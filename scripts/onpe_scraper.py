@@ -48,6 +48,17 @@ nombres_ambito2 = {
 exitos = 0
 fallos = 0
 
+# CARPETAS BASE
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = 'C:/Users/gamar/Documents/proyectos-git/git-elecciones'
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+CARPETA_JSON = os.path.join(DATA_DIR, "json")
+CARPETA_PARAMETROS = os.path.join(DATA_DIR, "parametros")
+CARPETA_PARAMETROS_GLOBALES = os.path.join(DATA_DIR, "parametros_globales")
+CARPETA_SALIDA = os.path.join(DATA_DIR, "tablas")
+
 # Crear directorio
 os.makedirs("../data/json", exist_ok=True)
 
@@ -88,7 +99,7 @@ def obtener_datos_con_selenium(ambito, ubigeo, nombre=None):
             data = json.loads(page_text)
             
             # Guardar archivo
-            nombre_archivo = f"../data/json/resultados_ambito{ambito}_{ubigeo}_{timestamp}.json"
+            nombre_archivo = f"{CARPETA_JSON}/resultados_ambito{ambito}_{ubigeo}_{timestamp}.json"
             with open(nombre_archivo, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             

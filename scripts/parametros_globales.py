@@ -10,6 +10,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = 'C:/Users/gamar/Documents/proyectos-git/git-elecciones'
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+CARPETA_JSON = os.path.join(DATA_DIR, "json")
+CARPETA_PARAMETROS = os.path.join(DATA_DIR, "parametros")
+CARPETA_PARAMETROS_GLOBALES = os.path.join(DATA_DIR, "parametros_globales")
+CARPETA_SALIDA = os.path.join(DATA_DIR, "tablas")
+
 # === CREAR CARPETA DATA/JSON SI NO EXISTE ===
 os.makedirs("../data/data/parametros_globales", exist_ok=True)
 
@@ -55,7 +64,7 @@ def obtener_datos_con_selenium(nombre=None):
             data = json.loads(page_text)
             
             # Guardar archivo
-            nombre_archivo = nombre_archivo = f"../data/parametros_globales/parametros_globales.json"
+            nombre_archivo = nombre_archivo = f"{CARPETA_PARAMETROS_GLOBALES}/parametros_globales.json"
             with open(nombre_archivo, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
 
